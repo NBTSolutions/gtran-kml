@@ -19,8 +19,13 @@ exports.fromGeoJson = function(geojson, fileName, options, callback) {
                                   options.symbol);
     }
 
-    fs.writeFile(fileName, kmlContent, function(err) {
-        if(!callback) { return; }
-        callback(err, fileName);
-    });
+    if(fileName) {
+        fs.writeFile(fileName, kmlContent, function(err) {
+            if(!callback) { return; }
+            callback(err, fileName);
+        });
+    } else {
+        if(callback) { callback(null, kmlContent); }
+        return kmlContent;
+    }
 };
