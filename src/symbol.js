@@ -9,14 +9,17 @@ exports.addTo = function(kmlContent, geomType, symbol) {
 
     switch (geomType) {
         case 'Point':
+        case 'MultiPoint':
             var geomStyle = et.SubElement(style, 'IconStyle');
             addPointSymbol(geomStyle, symbol);
             break;
         case 'Polygon':
+        case 'MultiPolygon':
             var geomStyle = et.SubElement(style, 'PolyStyle');
             addPolygonSymbol(geomStyle, symbol);
             break;
         case 'LineString':
+        case 'MultiLineString':
             var geomStyle = et.SubElement(style, 'LineStyle');
             addLineStringSymbol(geomStyle, symbol);
             break;
@@ -86,27 +89,10 @@ function addLineStringSymbol(styleNode, symbol) {
 }
 
 function toKmlColor(symbol) {
-    switch (typeof symbol.color) {
-        case 'string':
-            if (symbol.color === 4) {
-                symbol.color.splice(1, 0, '0');
-                symbol.color.splice(2, 0, '0');
-                symbol.color.splice(3, 0, '0');
-            }
-            var color = symbol.color.substr(5, 2) +
-                        symbol.color.substr(3, 2) +
-                        symbol.color.substr(1, 2);
-            break;
-        case 'object':
-            var color = getFullHexagonValue(symbol.color[2]) +
-                        getFullHexagonValue(symbol.color[1]) +
-                        getFullHexagonValue(symbol.color[0]);
-
-            break;
-        default:
-            throw new Error('Given color is invalid.');
-    }
-
+    var color = symbol.color.substr(5, 2) +
+                symbol.color.substr(3, 2) +
+                symbol.color.substr(1, 2);
+                
     color = 'alpha' in symbol ? symbol.alpha.toString(16) + color : 'ff' + color;
 
     return color;

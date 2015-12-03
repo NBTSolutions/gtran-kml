@@ -8,18 +8,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/haoliangyu/gtran-kml.git"
+    "url": "git+https://github.com/NBTSolutions/gtran-kml.git"
   },
   "keywords": [
     "geojson",
     "kml"
   ],
-  "author": "Haoliang Yu <haholiang.yu@outlook.com>",
+  "author": "Haoliang Yu <haholiang.yu@nbtsolutions.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/haoliangyu/gtran-kml/issues"
+    "url": "https://github.com/NBTSolutions/gtran-kml/issues"
   },
-  "homepage": "https://github.com/haoliangyu/gtran-kml#readme",
+  "homepage": "https://github.com/NBTSolutions/gtran-kml#readme",
   "dependencies": {
     "elementtree": "^0.1.6",
     "tokml": "^0.3.0"
@@ -27,7 +27,6 @@
   "devDependencies": {
     "chai": "^3.4.1",
     "log4js": "^0.6.27",
-    "mocha": "^2.3.3",
-    "q": "^1.4.1"
+    "mocha": "^2.3.3"
   }
 }
