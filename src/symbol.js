@@ -36,17 +36,17 @@ exports.addTo = function(kmlContent, geomType, symbol) {
 };
 
 function addPointSymbol(styleNode, symbol) {
-    if('color' in symbol) {
+    if(symbol.hasOwnProperty('color')) {
         var colorNode = et.SubElement(styleNode, 'color');
         colorNode.text = toKmlColor(symbol);
     }
 
-    if('scale' in symbol) {
+    if(symbol.hasOwnProperty('scale')) {
         var scaleNode = et.SubElement(styleNode, 'scale');
         scaleNode.text = symbol.scale.toString();
     }
 
-    if('icon' in symbol) {
+    if(symbol.hasOwnProperty('icon')) {
         var iconNode = et.SubElement(styleNode, 'Icon');
         var hrefNode = et.SubElement(iconNode, 'href');
         hrefNode.text = symbol.icon;
@@ -56,17 +56,17 @@ function addPointSymbol(styleNode, symbol) {
 }
 
 function addPolygonSymbol(styleNode, symbol) {
-    if('color' in symbol) {
+    if(symbol.hasOwnProperty('color')) {
         var colorNode = et.SubElement(styleNode, 'color');
         colorNode.text = toKmlColor(symbol);
     }
 
-    if('fill' in symbol) {
+    if(symbol.hasOwnProperty('fill')) {
         var fillNode = et.SubElement(styleNode, 'fill');
         fillNode.text = symbol.fill ? '1' : '0';
     }
 
-    if('outline' in symbol) {
+    if(symbol.hasOwnProperty('outline')) {
         var outlineNode = et.SubElement(styleNode, 'outline');
         outlineNode.text = symbol.outline ? '1' : '0';
     }
@@ -75,12 +75,12 @@ function addPolygonSymbol(styleNode, symbol) {
 }
 
 function addLineStringSymbol(styleNode, symbol) {
-    if('color' in symbol) {
+    if(symbol.hasOwnProperty('color')) {
         var colorNode = et.SubElement(styleNode, 'color');
         colorNode.text = toKmlColor(symbol);
     }
 
-    if('width' in symbol) {
+    if(symbol.hasOwnProperty('width')) {
         var widthNode = et.SubElement(styleNode, 'width');
         widthNode.text = symbol.width.toString();
     }
@@ -92,7 +92,7 @@ function toKmlColor(symbol) {
     var color = symbol.color.substr(5, 2) +
                 symbol.color.substr(3, 2) +
                 symbol.color.substr(1, 2);
-                
+
     color = 'alpha' in symbol ? symbol.alpha.toString(16) + color : 'ff' + color;
 
     return color;
